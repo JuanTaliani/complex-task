@@ -6,6 +6,22 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
+/**
+ * Cucumber test runner configured to execute scenarios using the Chrome browser.
+ * <p>
+ * This class sets up the test environment by specifying the browser type before test execution.
+ * It uses the {@code @RunWith(Cucumber.class)} annotation to run Cucumber tests
+ * with the JUnit framework.
+ * </p>
+ * <p>
+ * Configuration options include:
+ * <ul>
+ *     <li>{@code features} - Path to the feature files.</li>
+ *     <li>{@code glue} - Location of step definition classes.</li>
+ *     <li>{@code plugin} - Cucumber plugins used for output formatting.</li>
+ * </ul>
+ * </p>
+ */
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/features",
@@ -13,6 +29,12 @@ import org.junit.runner.RunWith;
         plugin = {"pretty"}
 )
 public class TestRunnerChrome {
+    /**
+     * Sets the browser type to Chrome before executing any Cucumber tests.
+     * <p>
+     * This method ensures the browser type is configured appropriately using the {@link BrowserManager}.
+     * </p>
+     */
     @BeforeClass
     public static void setUp() {
         BrowserManager.setBrowser("chrome");
