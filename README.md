@@ -38,3 +38,7 @@ Please, add task description as README.md into your solution!
 - **[Optional] Test automation approach:** BDD;
 - **Assertions:** Hamcrest;
 - **[Optional] Loggers:** Log4j.
+
+NOTE: The version of the drivers used are:
+- Chrome: 135.0.7049.95
+- Edge: 135.0.3179.85
