@@ -7,8 +7,6 @@ import org.apache.logging.log4j.ThreadContext;
  * <p>
  * This class allows each thread in a parallel test execution environment to maintain
  * its own isolated browser configuration, ensuring thread safety and independence.
- * </p>
- * <p>
  * It also integrates with Log4j's {@link ThreadContext} to enrich logging context
  * by associating the current thread's browser type, enabling more informative logs.
  * </p>

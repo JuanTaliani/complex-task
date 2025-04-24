@@ -7,21 +7,22 @@ import org.openqa.selenium.WebDriver;
  * Implementation of the {@link ILoginPage} interface that models the login page
  * of the application.
  * <p>
- * Provides methods to interact with login fields, perform the login action, and retrieve error messages.
+ * Provides methods to interact with login fields, perform the login action, and
+ * retrieve error messages.
  * </p>
  */
 public class LoginPageImpl extends BasePage implements ILoginPage {
     /** Locator for the username input field. */
-    private final By usernameField;
+    private final By usernameField = new By.ByXPath("//input[@id='user-name']");
 
     /** Locator for the password input field. */
-    private final By passwordField;
+    private final By passwordField = new By.ByXPath("//input[@id='password']");
 
     /** Locator for the login button. */
-    private final By loginButton;
+    private final By loginButton = new By.ByXPath("//input[@value='Login']");
 
     /** Locator for the error message. */
-    private final By messageError;
+    private final By messageError = new By.ByXPath("//div[contains(@class, 'error')]/h3");
 
     /**
      * Constructs a new instance of {@code LoginPageImpl}.
@@ -30,10 +31,6 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
      */
     public LoginPageImpl(WebDriver driver) {
         super(driver);
-        this.usernameField = new By.ByXPath("//input[@id='user-name']");
-        this.passwordField = new By.ByXPath("//input[@id='password']");
-        this.loginButton = new By.ByXPath("//input[@value='Login']");
-        this.messageError = new By.ByXPath("//div[contains(@class, 'error')]/h3");
     }
 
     /**
@@ -43,7 +40,7 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
      */
     @Override
     public void setUsername(String text) {
-        set(usernameField, text);
+        sendText(usernameField, text);
     }
 
     /**
@@ -53,7 +50,7 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
      */
     @Override
     public void setPassword(String text) {
-        set(passwordField, text);
+        sendText(passwordField, text);
     }
 
     /**

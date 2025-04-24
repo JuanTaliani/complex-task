@@ -1,32 +1,24 @@
 Feature: Login Functionality
 
-  Scenario Outline: Login with empty credentials
+  Background:
     Given I am on the login page
-    When I enter the username "<username>"
-    And I enter the password "<password>"
+
+  Scenario: Login with empty credentials
+    When I enter the username "standard_user"
+    And I enter the password "secret_sauce"
     And I clear the username field
     And I clear the password field
     And I click the login button
     Then I should see the error message "Epic sadface: Username is required"
 
-    Examples:
-      | username                | password     |
-      | standard_user           | secret_sauce |
-
-  Scenario Outline: Login with missing password
-    Given I am on the login page
-    When I enter the username "<username>"
-    And I enter the password "<password>"
+  Scenario: Login with missing password
+    When I enter the username "standard_user"
+    And I enter the password "secret_sauce"
     And I clear the password field
     And I click the login button
     Then I should see the error message "Epic sadface: Password is required"
 
-    Examples:
-      | username                | password     |
-      | standard_user           | secret_sauce |
-
   Scenario Outline: Login with valid credentials
-    Given I am on the login page
     When I enter the username "<username>"
     And I enter the password "<password>"
     And I click the login button

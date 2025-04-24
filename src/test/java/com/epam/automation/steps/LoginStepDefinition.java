@@ -24,8 +24,6 @@ import static org.hamcrest.Matchers.*;
  * <p>
  * Contains the steps required to execute login tests, including navigation,
  * setting input values, clearing input field, clicking buttons, and verifying results.
- * </p>
- * <p>
  * This class utilizes Cucumber step annotations to map feature steps to code execution.
  * </p>
  */
@@ -58,6 +56,7 @@ public class LoginStepDefinition {
         log.info("Setting up test environment");
         driver = DriverProvider.getDriver(browser);
         loginPage = new LoginPageLog(new LoginPageImpl(driver));
+        dashboardPage = new DashboardPageLog(new DashboardPageImpl(driver));
         log.info("Test environment set up completed successfully");
     }
 
@@ -73,7 +72,7 @@ public class LoginStepDefinition {
     @AfterStep
     public void takeScreenshotOnFailedResult(Scenario scenario) {
         if (scenario.isFailed()) {
-            ScreenshotUtils.takeScreenshot(driver, scenario);
+            ScreenshotUtils.takeScreenshot(driver, scenario.getName());
         }
     }
 
@@ -145,7 +144,7 @@ public class LoginStepDefinition {
      */
     @And("I click the login button")
     public void i_click_the_login_button() {
-        this.dashboardPage = loginPage.clickLoginButton();
+        loginPage.clickLoginButton();
     }
 
     /**
@@ -156,12 +155,9 @@ public class LoginStepDefinition {
     @Then("I should see the error message {string}")
     public void i_should_see_the_error_message(String errorMessage) {
         log.info("Verifying error message: {}", errorMessage);
-        try {
-            assertThat(loginPage.getErrorMessage(), is(equalTo(errorMessage)));
-            log.info("Assertion passed: Error message matches expected");
-        } catch (AssertionError e) {
-            log.error("Assertion failed: {}", e.getMessage());
-        }
+        assertThat("Assertion failed: the error message is not as expected",
+                loginPage.getErrorMessage(),
+                is(equalTo(errorMessage)));
     }
 
     /**
@@ -172,11 +168,8 @@ public class LoginStepDefinition {
     @Then("I should see the dashboard title {string}")
     public void i_should_see_the_dashboard_title(String dashboardTitle) {
         log.info("Verifying dashboard title: {}", dashboardTitle);
-        try {
-            assertThat(dashboardPage.getDashboardTitle(), is(equalTo(dashboardTitle)));
-            log.info("Assertion passed: Dashboard title matches expected");
-        } catch (AssertionError e) {
-            log.error("Assertion failed: {}", e.getMessage());
-        }
+        assertThat("Assertion failed: the dashboard title is not as expected",
+                dashboardPage.getDashboardTitle(),
+                is(equalTo(dashboardTitle)));
     }
 }

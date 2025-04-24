@@ -1,6 +1,5 @@
 package com.epam.automation.utils;
 
-import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,9 +34,9 @@ public class ScreenshotUtils {
      * </p>
      *
      * @param driver   the {@link WebDriver} used to take the screenshot
-     * @param scenario the {@link Scenario} from which the name is used in the filename
+     * @param scenarioName the name of the scenario, used in the screenshot filename
      */
-    public static void takeScreenshot(WebDriver driver, Scenario scenario) {
+    public static void takeScreenshot(WebDriver driver, String scenarioName) {
         try {
             File capture = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
@@ -45,7 +44,7 @@ public class ScreenshotUtils {
                     "/screenshots/" +
                     getCurrentTimeAsString() + "_" +
                     BrowserManager.getBrowser() + "_" +
-                    toPascalCase(scenario.getName()) + ".png";
+                    toPascalCase(scenarioName) + ".png";
             File destination = new File(screenshotPath);
 
             FileUtils.copyFile(capture, destination);

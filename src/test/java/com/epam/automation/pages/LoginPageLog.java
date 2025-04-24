@@ -76,12 +76,7 @@ public class LoginPageLog implements ILoginPage {
     @Override
     public IDashboardPage clickLoginButton() {
         log.info("Clicking login button");
-        try {
-            return new DashboardPageLog(loginPage.clickLoginButton());
-        } catch (Exception e) {
-            log.error("Error clicking login button: {}", e.getMessage());
-            throw e;
-        }
+        return new DashboardPageLog(loginPage.clickLoginButton());
     }
 
     /**
@@ -93,13 +88,6 @@ public class LoginPageLog implements ILoginPage {
     @Override
     public String getErrorMessage() {
         log.info("Getting error message");
-        try {
-            String errorMessage = loginPage.getErrorMessage();
-            log.info("Error message received: {}", errorMessage);
-            return errorMessage;
-        } catch (Exception e) {
-            log.error("Error getting error message: {}", e.getMessage());
-            throw e;
-        }
+        return loginPage.getErrorMessage();
     }
 }

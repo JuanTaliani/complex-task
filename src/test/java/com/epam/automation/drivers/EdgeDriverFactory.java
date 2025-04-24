@@ -11,8 +11,6 @@ import org.openqa.selenium.edge.EdgeOptions;
  * <p>
  * The Edge browser window is positioned on the right half of the screen
  * and is resized to occupy half of the screen width and the full screen height.
- * </p>
- * <p>
  * The driver executable path is set dynamically based on the project directory.
  * </p>
  */

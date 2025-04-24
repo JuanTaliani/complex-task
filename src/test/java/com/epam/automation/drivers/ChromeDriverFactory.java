@@ -11,8 +11,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
  * <p>
  * The Chrome browser window is positioned on the left half of the screen
  * and is resized to occupy half of the screen width and the full screen height.
- * </p>
- * <p>
  * The driver executable path is set dynamically based on the project directory.
  * </p>
  */

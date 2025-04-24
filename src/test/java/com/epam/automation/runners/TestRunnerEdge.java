@@ -12,8 +12,6 @@ import org.junit.runner.RunWith;
  * This class sets up the test environment by specifying the browser type before test execution.
  * It uses the {@code @RunWith(Cucumber.class)} annotation to run Cucumber tests
  * with the JUnit framework.
- * </p>
- * <p>
  * Configuration options include:
  * <ul>
  *     <li>{@code features} - Path to the feature files.</li>
@@ -26,7 +24,10 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "com.epam.automation.steps",
-        plugin = {"pretty"}
+        plugin = {
+                "pretty",
+                "html:target/cucumber-reports"
+        }
 )
 public class TestRunnerEdge {
 

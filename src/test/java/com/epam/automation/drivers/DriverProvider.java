@@ -9,8 +9,6 @@ import java.time.Duration;
  * <p>
  * This class acts as a central access point for creating WebDriver instances
  * using the appropriate {@link DriverFactory} implementation.
- * </p>
- * <p>
  * Currently supported browsers:
  * <ul>
  *     <li>chrome</li>

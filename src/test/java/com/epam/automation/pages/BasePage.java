@@ -19,8 +19,9 @@ import java.time.Duration;
 public abstract class BasePage {
     /** The WebDriver instance used to interact with the browser. */
     protected WebDriver driver;
+
     /** WebDriverWait instance for applying explicit waits. */
-    protected WebDriverWait wait;
+    private final WebDriverWait wait;
 
     /**
      * Constructs a new BasePage instance with the specified WebDriver.
@@ -39,7 +40,9 @@ public abstract class BasePage {
      * @return the visible {@link WebElement}
      */
     public WebElement find(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+        return driver.findElement(locator);
     }
 
     /**
@@ -48,8 +51,10 @@ public abstract class BasePage {
      * @param locator the {@link By} locator of the input field
      * @param text    the text to enter
      */
-    public void set(By locator, String text) {
-        WebElement element = find(locator);
+    public void sendText(By locator, String text) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+        WebElement element = driver.findElement(locator);
         clear(locator);
         element.sendKeys(text);
     }
@@ -60,7 +65,9 @@ public abstract class BasePage {
      * @param locator the {@link By} locator of the input field
      */
     public void clear(By locator) {
-        WebElement element = find(locator);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+        WebElement element = driver.findElement(locator);
         element.sendKeys(Keys.CONTROL + "a");
         element.sendKeys(Keys.DELETE);
     }
@@ -71,7 +78,10 @@ public abstract class BasePage {
      * @param locator the {@link By} locator of the element to click
      */
     public void click(By locator) {
-        WebElement element = find(locator);
+        WebElement element = driver.findElement(locator);
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+
         element.click();
     }
 }

@@ -35,13 +35,6 @@ public class DashboardPageLog implements IDashboardPage {
     @Override
     public String getDashboardTitle() {
         log.info("Getting dashboard title");
-        try {
-            String title = dashboardPage.getDashboardTitle();
-            log.info("Dashboard title: {}", title);
-            return title;
-        } catch (Exception e) {
-            log.error("Error getting dashboard title: {}", e.getMessage());
-            throw e;
-        }
+        return dashboardPage.getDashboardTitle();
     }
 }
