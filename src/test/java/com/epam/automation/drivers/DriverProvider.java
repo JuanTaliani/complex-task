@@ -47,6 +47,7 @@ public class DriverProvider {
 
         // Set implicit wait timeout
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().window().maximize();
 
         return driver;
     }

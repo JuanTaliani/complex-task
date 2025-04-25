@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 /**
  * Cucumber test runner configured to execute scenarios using the Chrome browser.
  * <p>
- * This class sets up the test environment by specifying the browser type before test execution.
+ * This class sets up the test environment.
  * It uses the {@code @RunWith(Cucumber.class)} annotation to run Cucumber tests
  * with the JUnit framework.
  * Configuration options include:
@@ -26,18 +26,9 @@ import org.junit.runner.RunWith;
         glue = "com.epam.automation.steps",
         plugin = {
                 "pretty",
-                "html:target/cucumber-reports"
+                "html:target/cucumber-reports.html"
         }
 )
-public class TestRunnerChrome {
-    /**
-     * Sets the browser type to Chrome before executing any Cucumber tests.
-     * <p>
-     * This method ensures the browser type is configured appropriately using the {@link BrowserManager}.
-     * </p>
-     */
-    @BeforeClass
-    public static void setUp() {
-        BrowserManager.setBrowser("chrome");
-    }
+public class TestRunner {
+
 }

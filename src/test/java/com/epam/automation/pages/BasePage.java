@@ -1,5 +1,7 @@
 package com.epam.automation.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +19,9 @@ import java.time.Duration;
  * </p>
  */
 public abstract class BasePage {
+    /** Logger instance for logging interactions and actions within page objects. */
+    protected Logger log = LogManager.getLogger(BasePage.class);
+
     /** The WebDriver instance used to interact with the browser. */
     protected WebDriver driver;
 
@@ -40,6 +45,8 @@ public abstract class BasePage {
      * @return the visible {@link WebElement}
      */
     public WebElement find(By locator) {
+        log.info("Finding web element: {}", locator.toString());
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
         return driver.findElement(locator);
@@ -52,6 +59,8 @@ public abstract class BasePage {
      * @param text    the text to enter
      */
     public void sendText(By locator, String text) {
+        log.info("Sending text to input field {}", locator.toString());
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
         WebElement element = driver.findElement(locator);
@@ -65,6 +74,8 @@ public abstract class BasePage {
      * @param locator the {@link By} locator of the input field
      */
     public void clear(By locator) {
+        log.info("Clearing input field: {}", locator.toString());
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
         WebElement element = driver.findElement(locator);
@@ -78,6 +89,8 @@ public abstract class BasePage {
      * @param locator the {@link By} locator of the element to click
      */
     public void click(By locator) {
+        log.info("Clicking web element: {}", locator.toString());
+
         WebElement element = driver.findElement(locator);
 
         wait.until(ExpectedConditions.elementToBeClickable(locator));

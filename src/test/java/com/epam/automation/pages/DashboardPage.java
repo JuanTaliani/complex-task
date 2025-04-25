@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
  * Provide a method to retrieve the dashboard title.
  * </p>
  */
-public class DashboardPageImpl extends BasePage implements IDashboardPage {
+public class DashboardPage extends BasePage {
     /** Locator for the dashboard title. */
     private final By dashboardTitle;
 
@@ -19,7 +19,7 @@ public class DashboardPageImpl extends BasePage implements IDashboardPage {
      *
      * @param driver the {@link WebDriver} instance used to interact with the page
      */
-    public DashboardPageImpl(WebDriver driver) {
+    public DashboardPage(WebDriver driver) {
         super(driver);
         this.dashboardTitle = new By.ByXPath("//div[@class='app_logo']");
     }
@@ -29,7 +29,6 @@ public class DashboardPageImpl extends BasePage implements IDashboardPage {
      *
      * @return the dashboard title as a {@link String}
      */
-    @Override
     public String getDashboardTitle() {
         return find(dashboardTitle).getText();
     }

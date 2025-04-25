@@ -1,6 +1,5 @@
 package com.epam.automation.drivers;
 
-import com.epam.automation.utils.DisplayUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -24,14 +23,6 @@ public class EdgeDriverFactory implements DriverFactory {
     @Override
     public WebDriver createDriver() {
         EdgeOptions options = new EdgeOptions();
-
-        // Calculate half of the screen width and full height
-        int halfWidth = DisplayUtils.getScreenWidth() / 2;
-        int height = DisplayUtils.getScreenHeight();
-
-        // Set Edge window position and size
-        options.addArguments("--window-position=" + halfWidth + ",0");
-        options.addArguments("--window-size=" + halfWidth + "," + height);
 
         // Set the path to the EdgeDriver executable
         String driverPath = System.getProperty("user.dir") +

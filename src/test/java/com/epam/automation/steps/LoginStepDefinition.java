@@ -38,10 +38,10 @@ public class LoginStepDefinition {
     private WebDriver driver;
 
     /** Instance of the login page interface to interact with login elements. */
-    private ILoginPage loginPage;
+    private LoginPage loginPage;
 
     /** Instance of the dashboard page interface to interact with dashboard elements. */
-    private IDashboardPage dashboardPage;
+    private DashboardPage dashboardPage;
 
     /**
      * Setup method to initialize the WebDriver and login page elements before each scenario.
@@ -52,11 +52,14 @@ public class LoginStepDefinition {
      */
     @Before
     public void setUp() {
-        String browser = BrowserManager.getBrowser();
         log.info("Setting up test environment");
+
+        String browser = System.getProperty("browser");
+        BrowserManager.setBrowser(browser);
         driver = DriverProvider.getDriver(browser);
-        loginPage = new LoginPageLog(new LoginPageImpl(driver));
-        dashboardPage = new DashboardPageLog(new DashboardPageImpl(driver));
+        loginPage = new LoginPage(driver);
+        dashboardPage = new DashboardPage(driver);
+
         log.info("Test environment set up completed successfully");
     }
 

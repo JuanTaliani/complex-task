@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
  * retrieve error messages.
  * </p>
  */
-public class LoginPageImpl extends BasePage implements ILoginPage {
+public class LoginPage extends BasePage {
     /** Locator for the username input field. */
     private final By usernameField = new By.ByXPath("//input[@id='user-name']");
 
@@ -29,7 +29,7 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
      *
      * @param driver the {@link WebDriver} instance used to interact with the page
      */
-    public LoginPageImpl(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 
@@ -38,7 +38,6 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
      *
      * @param text the username to be entered
      */
-    @Override
     public void setUsername(String text) {
         sendText(usernameField, text);
     }
@@ -48,7 +47,6 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
      *
      * @param text the password to be entered
      */
-    @Override
     public void setPassword(String text) {
         sendText(passwordField, text);
     }
@@ -56,7 +54,6 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
     /**
      * Clears the username input field.
      */
-    @Override
     public void clearUsername() {
         clear(usernameField);
     }
@@ -64,7 +61,6 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
     /**
      * Clears the password input field.
      */
-    @Override
     public void clearPassword() {
         clear(passwordField);
     }
@@ -72,12 +68,11 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
     /**
      * Clicks the login button to perform the login.
      *
-     * @return an instance of {@link IDashboardPage} representing the dashboard page
+     * @return an instance of {@link DashboardPage} representing the dashboard page
      */
-    @Override
-    public IDashboardPage clickLoginButton() {
+    public DashboardPage clickLoginButton() {
         click(loginButton);
-        return new DashboardPageImpl(driver);
+        return new DashboardPage(driver);
     }
 
     /**
@@ -85,7 +80,6 @@ public class LoginPageImpl extends BasePage implements ILoginPage {
      *
      * @return the error message as a {@link String}
      */
-    @Override
     public String getErrorMessage() {
         return find(messageError).getText();
     }

@@ -13,7 +13,7 @@ import org.apache.logging.log4j.ThreadContext;
  */
 public class BrowserManager {
     /** Thread-local variable that stores the browser type for the current thread. */
-    private static final ThreadLocal<String> browser = new ThreadLocal<>();
+    private static String browser;
 
     /**
      * Sets the browser type for the current thread.
@@ -22,7 +22,7 @@ public class BrowserManager {
      * @param browser the name of the browser (e.g., "chrome", "edge")
      */
     public static void setBrowser(String browser) {
-        BrowserManager.browser.set(browser);
+        BrowserManager.browser = browser;
         ThreadContext.put("browser", browser.toUpperCase());
     }
 
@@ -32,7 +32,7 @@ public class BrowserManager {
      * @return the browser name for the current thread
      */
     public static String getBrowser() {
-        return BrowserManager.browser.get();
+        return BrowserManager.browser;
     }
 
     /**
@@ -40,7 +40,6 @@ public class BrowserManager {
      * Also clears the value from {@link ThreadContext} for logging.
      */
     public static void removeBrowser() {
-        browser.remove();
         ThreadContext.remove("browser");
     }
 }
